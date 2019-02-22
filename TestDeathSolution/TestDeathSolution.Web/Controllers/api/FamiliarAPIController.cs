@@ -5,20 +5,32 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TestDeathSolution.Web.Domain;
+using TestDeathSolution.Web.Response;
 using TestDeathSolution.Web.Services;
 
 namespace TestDeathSolution.Web.Controllers.api
 {
+    /*
+     * myService = new Service(??);
+     * authService = new AuthService(??);
+     TestAuthController mycoolcontroller = new TestAuthController(myService, auth, principal);
+     */
+
+
     [RoutePrefix("api/familiar")]
-    public class FamiliarAPIController : ApiController
+    public class FamiliarAPIController : BaseApiController
     {
-        readonly IFamiliarService familiarService;
+        //Step 2 : make readonly to hold instance
+        //keeps it for safekeeping later
+        readonly private IFamiliarService _familiarService;
 
-
+        //Step 1: nake a parameter on your constructor fir servuce
         public FamiliarAPIController(IFamiliarService familiarService)
         {
-            this.familiarService = familiarService;
+            //Step 3: assign paramete of your constructor to the field
+            _familiarService = familiarService;
         }
+
 
         [Route, HttpGet]
         public string Test()
@@ -27,14 +39,11 @@ namespace TestDeathSolution.Web.Controllers.api
         }
 
         [Route("familiars"), HttpGet]
-        public List<Familiar> Select()
+        public HttpResponseMessage Select()
         {
-            FamiliarService familiarService = new FamiliarService();
-
-            List<Familiar> familiars = familiarService.Select();
-
-
-            return familiars;
+            ItemsResponse<Familiar> resp = new ItemsResponse<Familiar>();
+            resp.Items = _familiarService.Select();
+            return Request.CreateResponse(HttpStatusCode.OK, resp);
         }
 
     }
