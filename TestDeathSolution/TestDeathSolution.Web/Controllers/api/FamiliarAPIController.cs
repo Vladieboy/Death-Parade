@@ -46,5 +46,15 @@ namespace TestDeathSolution.Web.Controllers.api
             return Request.CreateResponse(HttpStatusCode.OK, resp);
         }
 
+
+
+        [Route("cantrips"), HttpGet]
+        public HttpResponseMessage GetCantrips()
+        {
+            var results = _familiarService.GetCantrips();
+            return Request.CreateResponse(HttpStatusCode.OK, results);
+        }
+
+
     }
 }
