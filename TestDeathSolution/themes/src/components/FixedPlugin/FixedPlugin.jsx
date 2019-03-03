@@ -16,7 +16,7 @@ class FixedPlugin extends Component {
     this.state = {
       classes: "dropdown show",
       bg_checked: true,
-      bgImage: this.props.bgImage
+      bgImage: this.props.bgImage || imagine5
     };
     this.handleClick = this.handleClick.bind(this);
   }

@@ -11,6 +11,7 @@ const MyFancyMap = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyDPt4lOsC7-Fo-BBk_WD_DeQO2ozHe2y6A",
+
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />

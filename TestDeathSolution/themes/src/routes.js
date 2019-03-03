@@ -10,6 +10,7 @@ import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
+import Reddit from "views/Reddit/Reddit";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
@@ -18,6 +19,9 @@ import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import SpellbookPage from "views/Spellbook/Spellbook";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
+import Address from "views/Addresses/AddressCreation.jsx";
+import AddressDisplayContainer from "views/Addresses/AddressDisplayContainer.jsx";
+// import AddressDisplayContainer from "views/Addresses/AddressDisplayContainer.jsx";
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.jsx";
 
@@ -28,6 +32,30 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
+    layout: "/admin"
+  },
+  {
+    path: "/reddit",
+    name: "Reddit",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: Reddit,
+    layout: "/admin"
+  },
+  {
+    path: "/address",
+    name: "Address",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: Address,
+    layout: "/admin"
+  },
+  {
+    path: "/addressDisplay",
+    name: "Address Display",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: AddressDisplayContainer,
     layout: "/admin"
   },
   {

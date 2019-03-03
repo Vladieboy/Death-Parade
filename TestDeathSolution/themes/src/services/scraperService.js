@@ -1,21 +1,23 @@
 import axios from "axios";
 
-let familiar_select = () => {
+let rootpath = "/api/scraper/";
+
+let redditScraper = () => {
   const config = {
+    url: rootpath + "reddit",
     method: "get",
-    url: "/api/familiar/familiars",
     headers: { "Content-Type": "/application/json" }
   };
   return axios(config);
 };
 
-let cantrips = () => {
+let symbolScraper = () => {
   const config = {
+    url: rootpath + "symbols",
     method: "get",
-    url: "/api/familiar/cantrips",
     headers: { "Content-Type": "/application/json" }
   };
   return axios(config);
 };
 
-export { familiar_select, cantrips };
+export { redditScraper, symbolScraper };

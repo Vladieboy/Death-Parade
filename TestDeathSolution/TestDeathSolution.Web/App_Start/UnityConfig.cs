@@ -54,6 +54,8 @@ namespace TestDeathSolution.Web
 
             container.RegisterType<IScraperService, ScraperService>();
 
+            container.RegisterType<IAddressService, AddressService>();
+
             container.RegisterType<IDataProvider, SqlDataProvider>(
               new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 

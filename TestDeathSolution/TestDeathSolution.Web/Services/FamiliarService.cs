@@ -53,12 +53,12 @@ namespace TestDeathSolution.Web.Services
 
         public List<Cantrips> GetCantrips()
         {
-            string url = "https://dnd5e.fandom.com/wiki/Warlock_Spells";
+            //string url = "https://dnd5e.fandom.com/wiki/Warlock_Spells";
             List<Cantrips> results = new List<Cantrips>();
 
-            using (var client = new HttpClient())
+            using (var client = new WebClient())
             {
-                var html = client.GetStringAsync(url).Result;
+                var html = client.DownloadString("https://dnd5e.fandom.com/wiki/Warlock_Spells");
                 var parser = new HtmlParser();
                 var document = parser.Parse(html);
                 var siteTable = document.QuerySelector("table");
@@ -81,44 +81,44 @@ namespace TestDeathSolution.Web.Services
             }
         }
 
-        private void Main(string[] args)
-        {
+        //private void Main(string[] args)
+        //{
 
-            var results = new List<DotNetVersion>();
-            //1 download html for page:
-            //https://en.wikipedia.org/wiki/.NET_Framework
-
-
-            var webClient = new WebClient();
-            var html = webClient.DownloadString("https://en.wikipedia.org/wiki/.NET_Framework");
+        //    var results = new List<DotNetVersion>();
+        //    //1 download html for page:
+        //    //https://en.wikipedia.org/wiki/.NET_Framework
 
 
-            //2 user css selectors to find the table
-            var parser = new HtmlParser();
-            var document = parser.Parse(html);
-            var table = document.QuerySelector(".wikitable:not(.plainrowheaders)");
-
-            //3 loop over every row and ceate an object for each row
-            var rows = table.QuerySelectorAll("tr").Skip(2);
-
-            foreach (var row in rows)
-            {
-                var dotNetVersion = new DotNetVersion();
-                dotNetVersion.Version = row.QuerySelector("td").TextContent;
-                dotNetVersion.ClrVersion = row.QuerySelector("td:nth-child(2)").TextContent;
-                //dotNetVersion.ReleaseDate = row.QuerySelector("td:nth-child(2)").TextContent;
-                dotNetVersion.ReleaseDate = row.QuerySelectorAll("td").Skip(2).First().TextContent;
-
-                results.Add(dotNetVersion);
-            }
+        //    var webClient = new WebClient();
+        //    var html = webClient.DownloadString("https://en.wikipedia.org/wiki/.NET_Framework");
 
 
-            //4 print out the results
-            foreach (var item in results)
-            {
-                Console.WriteLine($"Version={item.Version}, CLR version={item.ClrVersion}, release date={item.ReleaseDate}");
-            }
-        }
+        //    //2 user css selectors to find the table
+        //    var parser = new HtmlParser();
+        //    var document = parser.Parse(html);
+        //    var table = document.QuerySelector(".wikitable:not(.plainrowheaders)");
+
+        //    //3 loop over every row and ceate an object for each row
+        //    var rows = table.QuerySelectorAll("tr").Skip(2);
+
+        //    foreach (var row in rows)
+        //    {
+        //        var dotNetVersion = new DotNetVersion();
+        //        dotNetVersion.Version = row.QuerySelector("td").TextContent;
+        //        dotNetVersion.ClrVersion = row.QuerySelector("td:nth-child(2)").TextContent;
+        //        //dotNetVersion.ReleaseDate = row.QuerySelector("td:nth-child(2)").TextContent;
+        //        dotNetVersion.ReleaseDate = row.QuerySelectorAll("td").Skip(2).First().TextContent;
+
+        //        results.Add(dotNetVersion);
+        //    }
+
+
+        //    //4 print out the results
+        //    foreach (var item in results)
+        //    {
+        //        Console.WriteLine($"Version={item.Version}, CLR version={item.ClrVersion}, release date={item.ReleaseDate}");
+        //    }
+        //}
 
     }
 

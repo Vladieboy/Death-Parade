@@ -41,6 +41,7 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
 import * as familiarService from "../../services/familiarService";
+import * as scraperService from "../../services/scraperService";
 
 class Dashboard extends React.Component {
   state = {
@@ -54,9 +55,6 @@ class Dashboard extends React.Component {
     this.setState({ value: index });
   };
 
-  componentDidMount() {
-    familiarService.familiar_select();
-  }
   render() {
     const { classes } = this.props;
     return (
