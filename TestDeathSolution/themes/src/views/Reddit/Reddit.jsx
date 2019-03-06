@@ -1,6 +1,10 @@
 import React from "react";
 import * as scraperService from "../../services/scraperService";
 import RedditCard from "../Reddit/RedditCard";
+import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import Card from "components/Card/Card.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
 
 class Reddit extends React.Component {
   constructor(props) {
@@ -24,15 +28,13 @@ class Reddit extends React.Component {
   };
 
   render() {
-    console.log(this.state.reddit);
     return (
-      <div>
+      <Card>
+        <CardHeader color="warning">
+          <h4>Reddit Scraper</h4>
+        </CardHeader>
         {this.state.reddit.map(this.redditList)}
-        {/* <RedditCard redditData={this.state.reddit} /> */}
-        <h1>Reddit Scraper</h1>
-        <br />
-        <br />
-      </div>
+      </Card>
     );
   }
 }

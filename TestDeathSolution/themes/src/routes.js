@@ -10,18 +10,19 @@ import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
+import DashboardMK2 from "views/Dashboard/DashboardMK2.jsx";
 import Reddit from "views/Reddit/Reddit";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Icons from "views/Icons/Icons.jsx";
-import Maps from "views/Maps/Maps.jsx";
+import Maps from "views/Maps/MyFancyMap.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import SpellbookPage from "views/Spellbook/Spellbook";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import Address from "views/Addresses/AddressCreation.jsx";
 import AddressDisplayContainer from "views/Addresses/AddressDisplayContainer.jsx";
-// import AddressDisplayContainer from "views/Addresses/AddressDisplayContainer.jsx";
+
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.jsx";
 
@@ -35,6 +36,14 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    path: "/dashboardmk2",
+    name: "Dashboard 2",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: DashboardMK2,
+    layout: "/admin"
+  },
+  {
     path: "/reddit",
     name: "Reddit",
     rtlName: "لوحة القيادة",
@@ -45,6 +54,14 @@ const dashboardRoutes = [
   {
     path: "/address",
     name: "Address",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: Address,
+    layout: "/admin"
+  },
+  {
+    path: "/address/:uid",
+    name: "Edit Address",
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: Address,
@@ -113,22 +130,6 @@ const dashboardRoutes = [
     component: NotificationsPage,
     layout: "/admin"
   }
-  // {
-  //   path: "/upgrade-to-pro",
-  //   name: "Upgrade To PRO",
-  //   rtlName: "التطور للاحترافية",
-  //   icon: Unarchive,
-  //   component: UpgradeToPro,
-  //   layout: "/admin"
-  // },
-  // {
-  //   path: "/rtl-page",
-  //   name: "RTL Support",
-  //   rtlName: "پشتیبانی از راست به چپ",
-  //   icon: Language,
-  //   component: RTLPage,
-  //   layout: "/rtl"
-  // }
 ];
 
 export default dashboardRoutes;

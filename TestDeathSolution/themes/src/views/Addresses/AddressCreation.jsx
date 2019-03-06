@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 // @material-ui/core components
-
 import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
-
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-
 import CardBody from "components/Card/CardBody.jsx";
-
 import { Form, Formik } from "formik";
-
 import * as schemas from "models/addressSchemas.js";
 import * as mapService from "services/googleMapsService.js";
 import * as addressService from "services/addressService.js";
@@ -32,8 +27,21 @@ export default class AddressCreation extends Component {
     };
   }
 
-  handleSubmit = (values, obj) => {
-    console.log(values, obj);
+  componentDidMount() {
+    if (this.props.address !== undefined) {
+      this.getAddressId(this.props.address);
+    }
+  }
+
+  getAddressId = address => {
+    addressService.getId(address).then(this.onGetAddressSuccess);
+  };
+
+  onGetAddressSuccess = resp => {
+    this.setState({ addressData: JSON.parse(resp.Item.Value) });
+  };
+
+  handleSubmit = values => {
     this.setState(
       {
         addressData: values
@@ -104,7 +112,15 @@ export default class AddressCreation extends Component {
       addressCategory: "Place"
     };
 
-    addressService.create(payload);
+    if (this.props.address !== undefined) {
+      addressService.update(payload, this.props.address);
+    } else {
+      addressService.create(payload);
+    }
+  };
+
+  removeAddressRequest = () => {
+    this.props.remove(this.props.address);
   };
 
   render() {
@@ -130,7 +146,7 @@ export default class AddressCreation extends Component {
     return (
       <div>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={8}>
+          <GridItem xs={12} sm={12} md={3}>
             <Card>
               <CardHeader color="primary">
                 <h4 style={styleClasses.headerStyles}>
@@ -274,6 +290,13 @@ export default class AddressCreation extends Component {
                           onClick={handleSubmit}
                         >
                           Submit
+                        </Button>
+                        <Button
+                          color="primary"
+                          disabled={isSubmitting}
+                          onClick={e => this.removeAddressRequest(e)}
+                        >
+                          Delete
                         </Button>
                       </Form>
                     );

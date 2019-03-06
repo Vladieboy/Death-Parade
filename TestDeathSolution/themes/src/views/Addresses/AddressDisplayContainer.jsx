@@ -2,14 +2,19 @@ import React, { Suspense } from "react";
 import AddressCard from "./AddressCard";
 import Pagination from "react-js-pagination";
 import * as addressService from "services/addressService.js";
-import { CardDeck } from "reactstrap";
+import { CardDeck, Modal } from "reactstrap";
 import PageLoader from "../../components/PageLoader/PageLoader.jsx";
+import AddressUpdate from "./AddressCreation";
+import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import Card from "components/Card/Card.jsx";
 
 class AddressDisplayContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       addresses: [],
+      modal: false,
       pages: {
         totalCount: null,
         totalPages: null,
@@ -67,13 +72,20 @@ class AddressDisplayContainer extends React.Component {
     window.scrollTo(0, 0);
   };
 
-  // paginate = () => {
-  //   return (
+  toggleModal = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
 
-  //   );
-  // };
+  onModalRequested = address => {
+    this.setState({
+      modal: !this.state.modal,
+      addressInfo: address
+    });
+  };
 
-  getAllAddresses = (address, i) => {
+  getAllAddresses = address => {
     let mapImage = JSON.parse(address.Value);
 
     let mapImageUrl = encodeURIComponent(
@@ -88,28 +100,62 @@ class AddressDisplayContainer extends React.Component {
         mapImage.postalCode.replace(/[&\\#,+()$~%.'":*?<>{}]/g, "")
     );
 
-    return <AddressCard key={i} address={address} mapImageUrl={mapImageUrl} />;
+    return (
+      <AddressCard
+        {...this.props}
+        key={address.AddressId}
+        address={address}
+        mapImageUrl={mapImageUrl}
+        modalRequester={this.onModalRequested}
+        remove={this.remove}
+      />
+    );
+  };
+
+  remove = address => {
+    console.log("Successfully Deleted!");
+    let data = address.AddressId;
+    addressService.deleteAddress(
+      data,
+      this.pageDisplay,
+      this.onGetAddressFailure
+    );
   };
 
   render() {
     return (
       <Suspense fallback={<PageLoader />}>
-        <div>
+        <GridContainer>
           {" "}
-          <CardDeck>{this.state.addresses.map(this.getAllAddresses)}</CardDeck>
-          <div className="container-fluid pt-3">
-            <Pagination
-              itemClass="page-item"
-              linkClass="page-link"
-              hideDisabled
-              activePage={this.state.pages.activePage + 1}
-              itemsCountPerPage={this.state.pages.pageSize}
-              totalItemsCount={this.state.pages.totalCount}
-              pageRangeDisplayed={5}
-              onChange={this.pageChange}
-            />
-          </div>
+          <GridItem xs={12} sm={12} md={6}>
+            {this.state.addresses.map(this.getAllAddresses)}
+          </GridItem>
+        </GridContainer>{" "}
+        <div className="d-flex justify-content-center">
+          <Pagination
+            itemClass="page-item"
+            linkClass="page-link"
+            hideDisabled
+            activePage={this.state.pages.activePage + 1}
+            itemsCountPerPage={this.state.pages.pageSize}
+            totalItemsCount={this.state.pages.totalCount}
+            pageRangeDisplayed={5}
+            onChange={this.pageChange}
+          />
         </div>
+        <Modal
+          style={{ marginLeft: "500px" }}
+          {...this.props}
+          className="Modal"
+          isOpen={this.state.modal}
+          toggle={this.toggleModal}
+          container={this.true}
+        >
+          <AddressUpdate
+            address={this.state.addressInfo}
+            remove={this.remove}
+          />
+        </Modal>
       </Suspense>
     );
   }

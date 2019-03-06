@@ -18,7 +18,7 @@ const getId = id => {
   const config = {
     method: "get",
     url: rootPath + id,
-    headers: { "Content-Type": "/application/json" }
+    headers: { "Content-Type": "application/json" }
   };
   return axios(config)
     .then(global.onGlobalSuccess)
@@ -29,7 +29,7 @@ const deleteAddress = id => {
   const config = {
     method: "delete",
     url: rootPath + id,
-    headers: { "Content-Type": "/application/json" }
+    headers: { "Content-Type": "application/json" }
   };
   return axios(config)
     .then(global.onGlobalSuccess)
@@ -41,7 +41,7 @@ const update = (payload, id) => {
     data: payload,
     url: rootPath + id,
     method: "put",
-    headers: { "Content-Type": "/application/json" }
+    headers: { "Content-Type": "application/json" }
   };
   return axios(config)
     .then(global.onGlobalSuccess)
@@ -60,4 +60,15 @@ const getPage = payload => {
     .catch(global.onGlobalError);
 };
 
-export { create, getId, deleteAddress, update, getPage };
+const getAll = () => {
+  const config = {
+    url: rootPath,
+    method: "get",
+    headers: { "Content-Type": "application/json" }
+  };
+  return axios(config)
+    .then(global.onGlobalSuccess)
+    .catch(global.onGlobalError);
+};
+
+export { create, getId, deleteAddress, update, getPage, getAll };

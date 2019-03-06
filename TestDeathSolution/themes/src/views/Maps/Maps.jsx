@@ -1,11 +1,13 @@
 import React from "react";
-import { compose, withProps } from "recompose";
+import { compose, withProps, lifecycle } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from "react-google-maps";
+import * as addressService from "services/addressService.js";
 
 const MyFancyMap = compose(
   withProps({
@@ -17,7 +19,19 @@ const MyFancyMap = compose(
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withGoogleMap
+  withGoogleMap,
+  lifecycle({
+    componentDidMount() {
+      this.getAddresses();
+    },
+    getAddresses() {
+      addressService.getAll().then(this.onGetAllSuccess);
+    },
+    onGetAllSuccess(resp) {
+      console.log(resp);
+      const address = resp.Items;
+    }
+  })
 )(props => (
   <GoogleMap
     defaultZoom={10}
@@ -87,6 +101,7 @@ const MyFancyMap = compose(
     {props.isMarkerShown && (
       <Marker position={{ lat: 34.092808, lng: -118.328659 }} />
     )}
+    }
   </GoogleMap>
 ));
 
@@ -160,7 +175,12 @@ const MyFancyMap = compose(
 //         ]
 //       }}
 //     >
-//       <Marker position={{ lat: 34.092808, lng: -118.328659 }} />
+//       <Marker position={{ lat: 34.092808, lng: -118.328659 }}>
+//         {" "}
+//         <InfoWindow>
+//           <h1>Hi</h1>
+//         </InfoWindow>{" "}
+//       </Marker>
 //     </GoogleMap>
 //   ))
 // );
@@ -174,6 +194,15 @@ const MyFancyMap = compose(
 //       mapElement={<div style={{ height: `100%` }} />}
 //     />
 //   );
+// }
+
+// function getAddresses() {
+//   addressService.getAll().then(onGetAllSuccess);
+// }
+
+// function onGetAllSuccess(resp) {
+//   console.log(resp);
+//   const address = resp.Items;
 // }
 
 function Maps() {
