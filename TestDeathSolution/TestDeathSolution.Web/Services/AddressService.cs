@@ -34,6 +34,7 @@ namespace TestDeathSolution.Web.Services
                      sqlParams.AddWithValue("@Lat", address.Lat);
                      sqlParams.AddWithValue("@Long", address.Long);
                      sqlParams.AddWithValue("@AddressCategory", address.AddressCategory);
+                     sqlParams.AddWithValue("@Notes", address.Notes);
                      SqlParameter idParam = new SqlParameter("@AddressId", System.Data.SqlDbType.Int);
                      idParam.Direction = System.Data.ParameterDirection.Output;
 
@@ -127,6 +128,7 @@ namespace TestDeathSolution.Web.Services
                 address.Lat = reader.GetDouble(startingIndex++);
                 address.Long = reader.GetDouble(startingIndex++);
                 address.AddressCategory = reader.GetString(startingIndex++);
+                address.Notes = reader.GetString(startingIndex++);
 
                 addressList.Add(address);
                 totalCount = reader.GetInt32(0);
@@ -155,6 +157,7 @@ namespace TestDeathSolution.Web.Services
             paramCollec.AddWithValue("@Lat", address.Lat);
             paramCollec.AddWithValue("@Long", address.Long);
             paramCollec.AddWithValue("@AddressCategory", address.AddressCategory);
+            paramCollec.AddWithValue("@Notes", address.Notes);
         }
 
 
@@ -168,6 +171,7 @@ namespace TestDeathSolution.Web.Services
             address.Lat = reader.GetDouble(startingIndex++);
             address.Long = reader.GetDouble(startingIndex++);
             address.AddressCategory = reader.GetString(startingIndex++);
+            address.Notes = reader.GetString(startingIndex++);
             return address;
         }
     }

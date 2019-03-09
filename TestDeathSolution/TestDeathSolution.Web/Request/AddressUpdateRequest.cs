@@ -16,5 +16,7 @@ namespace TestDeathSolution.Web.Request
         public double Long { get; set; }
 
         public string AddressCategory { get; set; }
+
+        public string Notes { get; set; }
     }
 }

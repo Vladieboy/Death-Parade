@@ -17,5 +17,7 @@ namespace TestDeathSolution.Web.Request
 
         public string AddressCategory { get; set; }
 
+        public string Notes { get; set; }
+
     }
 }

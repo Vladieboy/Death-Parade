@@ -8,5 +8,7 @@ namespace TestDeathSolution.Web.Services
         List<OccultSymbols> GetOccultSymbols();
 
         List<CurrentGothReddit> GetCurrentGothReddits();
+
+        List<EsotericHoroscope> GetEsotericHoroscopes();
     }
 }

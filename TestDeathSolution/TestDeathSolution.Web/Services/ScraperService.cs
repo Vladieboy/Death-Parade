@@ -59,7 +59,7 @@ namespace TestDeathSolution.Web.Services
             {
                 var html = client.GetStringAsync(url).Result;
                 var parser = new HtmlParser();
-                var siteTable = parser.Parse(html).QuerySelectorAll("#siteTable > .thing");
+                var siteTable = parser.Parse(html).QuerySelectorAll("#siteTable > .thing").Skip(1);
 
                 foreach (var item in siteTable)
                 {
@@ -86,6 +86,29 @@ namespace TestDeathSolution.Web.Services
             }
         }
 
+        public List<EsotericHoroscope> GetEsotericHoroscopes()
+        {
+            string url = "http://www.alunamichaels.com/esoteric-horoscope/";
+            List<EsotericHoroscope> results = new List<EsotericHoroscope>();
+
+            using (var client = new HttpClient())
+            {
+                var html = client.GetStringAsync(url).Result;
+                var parser = new HtmlParser();
+                var document = parser.Parse(html).QuerySelectorAll("article > div.entry-content.cf > p > span");
+
+                foreach (var item in document)
+                {
+                    var horoscope = new EsotericHoroscope();
+
+                    horoscope.Horoscope = item.QuerySelector("span").TextContent;
+
+                    results.Add(horoscope);
+                }
+
+            }
+            return results;
+        }
 
     }
 }

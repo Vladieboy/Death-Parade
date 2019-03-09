@@ -33,5 +33,13 @@ namespace TestDeathSolution.Web.Controllers.api
             var resp = _scraperService.GetCurrentGothReddits();
             return Request.CreateResponse(HttpStatusCode.OK, resp);
         }
+
+        [Route("horoscope"), HttpGet]
+        public HttpResponseMessage GetEsotericHoroscopes()
+        {
+
+            var resp = _scraperService.GetEsotericHoroscopes();
+            return Request.CreateResponse(HttpStatusCode.OK, resp);
+        }
     }
 }
