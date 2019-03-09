@@ -328,3 +328,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/TestDeathSolution/TestDeathSolution.Web/_bin_deployableAssemblies/amd64/Microsoft.VC90.CRT
+/TestDeathSolution/TestDeathSolution.Web/_bin_deployableAssemblies/amd64
+/TestDeathSolution/TestDeathSolution.Web/connection.xml

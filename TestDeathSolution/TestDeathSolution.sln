@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDeathSolution.Web", "Te
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DeathParade|Any CPU = DeathParade|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66D4DC36-5752-44D1-8B2C-3548ABA095DE}.DeathParade|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D4DC36-5752-44D1-8B2C-3548ABA095DE}.DeathParade|Any CPU.Build.0 = Debug|Any CPU
 		{66D4DC36-5752-44D1-8B2C-3548ABA095DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66D4DC36-5752-44D1-8B2C-3548ABA095DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66D4DC36-5752-44D1-8B2C-3548ABA095DE}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,6 +1,11 @@
 using System;
+using System.Configuration;
+using System.Web.Mvc;
+using TestDeathSolution.Web.Provider;
 using TestDeathSolution.Web.Services;
 using Unity;
+using Unity.AspNet.WebApi;
+using Unity.Injection;
 
 namespace TestDeathSolution.Web
 {
@@ -44,6 +49,16 @@ namespace TestDeathSolution.Web
             // container.RegisterType<IProductRepository, ProductRepository>();
 
             container.RegisterType<IFamiliarService, FamiliarService>();
+
+            container.RegisterType<IDPUserService, DPUserService>();
+
+            container.RegisterType<IScraperService, ScraperService>();
+
+            container.RegisterType<IAddressService, AddressService>();
+
+            container.RegisterType<IDataProvider, SqlDataProvider>(
+              new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
+
 
         }
     }
