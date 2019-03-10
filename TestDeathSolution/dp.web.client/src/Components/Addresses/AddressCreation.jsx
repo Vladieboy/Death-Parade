@@ -94,7 +94,7 @@ export default class AddressCreation extends Component {
 
   geoLocateMe = mapUrlString => {
     mapService
-      .geoLocation2(mapUrlString)
+      .geoLocation(mapUrlString)
       .then(this.onGeoLocationSuccess)
       .catch(this.onGeoLocateFailure);
   };

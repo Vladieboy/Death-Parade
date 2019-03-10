@@ -331,3 +331,4 @@ ASALocalRun/
 /TestDeathSolution/TestDeathSolution.Web/_bin_deployableAssemblies/amd64/Microsoft.VC90.CRT
 /TestDeathSolution/TestDeathSolution.Web/_bin_deployableAssemblies/amd64
 /TestDeathSolution/TestDeathSolution.Web/connection.xml
+/TestDeathSolution/dp.web.client/src/Services/superSecretKeys.js
