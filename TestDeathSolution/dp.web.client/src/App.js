@@ -5,7 +5,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 
 import LandingPage from "./Components/LandingPage";
 import Navigation from "./Components/Navigation";
-import mainList from "./componentList";
+import mainList from "./routes";
 
 class App extends Component {
   constructor(props) {

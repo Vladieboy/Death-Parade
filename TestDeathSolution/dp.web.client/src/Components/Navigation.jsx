@@ -2,13 +2,13 @@ import React from "react";
 import styles from "../Styles/Materials/DashHeader";
 import { withStyles } from "@material-ui/core/styles";
 
-import NavBarDrawer from "./Navigation/NavBarDrawer";
+import Navbar from "./Navigation/Navbar";
 
 const Navigation = props => {
-  const { classes, logOut, children } = props;
+  const { classes, children } = props;
   return (
     <div className={classes.root}>
-      <NavBarDrawer {...props} logOut={logOut} />
+      <Navbar {...props} />
       <div className={classes.content}>
         <div className={classes.appBarSpacer} />
         {children}

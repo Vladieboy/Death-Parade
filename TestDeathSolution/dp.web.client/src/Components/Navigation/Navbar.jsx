@@ -12,12 +12,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../../Styles/Materials/DashHeader";
 import classNames from "classnames";
-import mainList from "../../componentList";
+import mainList from "../../routes";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import "../../index.css";
-class NavBarDrawer extends React.PureComponent {
+class Navbar extends React.PureComponent {
   state = {
     open: true,
     anchorEl: null
@@ -122,4 +122,4 @@ class NavBarDrawer extends React.PureComponent {
     );
   }
 }
-export default withStyles(styles)(NavBarDrawer);
+export default withStyles(styles)(Navbar);

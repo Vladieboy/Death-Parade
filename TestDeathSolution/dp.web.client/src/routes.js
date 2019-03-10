@@ -9,7 +9,7 @@ import AddAddress from "./Components/Addresses/AddressCreation";
 import Maps from "./Components/Maps/MyFancyMap";
 import Reddit from "./Components/Reddit/Reddit";
 import Horoscope from "./Components/Horoscope/HoroscopeDisplayContainer";
-import DashBoard from "./Components/Dashboard/DashboardMK2";
+import DashBoard from "./Components/Dashboard/Dashboard";
 
 var mainList = [
   {
