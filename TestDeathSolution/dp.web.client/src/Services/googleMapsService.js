@@ -3,8 +3,6 @@ import * as global from "../serviceHelpers/serviceHelpers.js";
 
 import * as secrets from "./superSecretKeys";
 
-// const APIkey = "AIzaSyDzdWabrdQcdh4i8pxn6iuqvIv4jY6icEU";
-
 const geoLocationAPI =
   "https://maps.googleapis.com/maps/api/geocode/json?address=";
 let rootPath = "/api/routes";
