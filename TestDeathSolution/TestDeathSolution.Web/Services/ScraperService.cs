@@ -51,6 +51,7 @@ namespace TestDeathSolution.Web.Services
         }
 
         public List<CurrentGothReddit> GetCurrentGothReddits()
+        //
         {
             string url = "https://old.reddit.com/r/occult/";
             List<CurrentGothReddit> results = new List<CurrentGothReddit>();
