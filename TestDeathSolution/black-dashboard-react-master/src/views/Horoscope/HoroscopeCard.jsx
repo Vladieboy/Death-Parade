@@ -8,7 +8,11 @@ export default class HoroscopeCard extends Component {
       <div>
         <Card>
           {" "}
-          <CardBody>{this.props.horoscope.Horoscope}</CardBody>
+          <CardBody>
+            <blockquote>
+              <p>{this.props.horoscope.Horoscope}</p>
+            </blockquote>
+          </CardBody>
         </Card>
       </div>
     );

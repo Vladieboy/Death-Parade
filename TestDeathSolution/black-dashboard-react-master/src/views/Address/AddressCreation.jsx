@@ -6,12 +6,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
-  CardText,
-  FormGroup,
   Input,
-  Row,
-  Col
+  Row
 } from "reactstrap";
 
 import { Form, Formik } from "formik";

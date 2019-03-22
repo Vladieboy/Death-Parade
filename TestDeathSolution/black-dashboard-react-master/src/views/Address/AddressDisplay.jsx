@@ -1,6 +1,5 @@
 import React from "react";
 import Pagination from "react-js-pagination";
-import classNames from "classnames";
 import { Modal, UncontrolledAlert } from "reactstrap";
 import AddressUpdate from "./AddressCreation";
 import AddressCard from "./AddressCard";
